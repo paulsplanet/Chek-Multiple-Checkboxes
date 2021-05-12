@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Multiple Checkboxes</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box;}
+        html body { height: 100%; width: 100%; }
+        .app {
+            width: 400px;
+            height: 800px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .checkbox {
+            width: 400px;
+            height: 50px;
+            border: solid 1px #d9d9d9;
+            padding: 10px 20px 10px 20px;
+        }
+        input {
+            height: 30px;
+            float: left; 
+        }        
+        input:checked + p {
+                text-decoration: line-through;
+            }
+        p {
+            height: 30px;
+            align-items: center;
+            line-height: 30px;
+            float: left;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #1</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #2</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #3</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #4</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #5</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #6</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #7</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #8</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #9</p>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>Checkbox #10</p>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.checkbox input[type="checkbox"]');
+        checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleClick));
+        let lastChecked;
+        // lastChecked and inBetween are the original function in JS? Seems like JS understand these words
+
+        function handleClick(e) {
+            let inBetween = false;
+
+            if(e.shiftKey && this.checked) {
+                checkboxes.forEach(checkbox => {
+                    console.log(checkbox);
+                    if(checkbox === this || checkbox === lastChecked) {
+                        inBetween = !inBetween;
+                        console.log("check here")
+                    }
+
+                    if(inBetween) {
+                        checkbox.checked = true;
+                    }
+                })
+            }
+            lastChecked = this;
+        }
+
+        
+    </script>
+</body>
+</html>
